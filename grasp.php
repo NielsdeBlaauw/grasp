@@ -12,4 +12,38 @@
  * @package         Grasp
  */
 
-// Your code starts here.
+add_action(
+	'init',
+	function() {
+		if ( current_user_can( 'edit_posts' ) ) {
+			add_action(
+				'admin_bar_menu',
+				function() {
+					global $wp_admin_bar;
+					$wp_admin_bar->add_node(
+						array(
+							'id' => 'grasp_container',
+						)
+					);
+				},
+				100
+			);
+
+			add_action(
+				'wp_enqueue_scripts',
+				function() {
+						wp_enqueue_script( 'grasp', plugin_dir_url( __FILE__ ) . 'dist/main.js', array( 'wp-api' ), get_file_data( __FILE__, array( 'version' => 'Version' ) )['version'], true );
+				}
+			);
+
+			add_action(
+				'rest_api_init',
+				function ( $server ) {
+						require_once realpath( __DIR__ . '/app/RestControllers/class-image-checker.php' );
+						$image_checker_endpoint = new \Grasp\RestControllers\Image_Checker();
+						$image_checker_endpoint->register_routes();
+				}
+			);
+		}
+	}
+);
