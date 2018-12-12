@@ -2,7 +2,7 @@
 Contributors: nielsdeblaauw
 Donate link: https://actd.nl/donate
 Tags: image, accessibility, seo, javascript, api, admin, development, content
-Requires at least: 4.5
+Requires at least: 4.7
 Tested up to: 5.0
 Stable tag: 0.1.0
 License: GPLv2 or later
