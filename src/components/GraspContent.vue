@@ -1,6 +1,5 @@
 <template>
 	<div class='grasp-content'>
-		<div class='grasp-comtent__header'>Your site analysis</div>
 		<div v-if='loading' class='grasp-content__loader'>Checking images on current page...</div>
 		<div class='grasp-content__list'>
 			<image-list :items='items'/>
@@ -39,11 +38,4 @@ export default {
 }
 </script>
 <style>
-#grasp .grasp-comtent__header{
-	font-size: 20px;
-	font-weight: bold;
-	border-bottom: 3px dotted #444;
-	padding-bottom: 5px;
-	margin-bottom: 15px;
-}
 </style>

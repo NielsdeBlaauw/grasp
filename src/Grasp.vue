@@ -32,7 +32,6 @@ export default {
 
 <style>
 	#grasp .grasp-container__content{
-		padding: 5px 10px;
 		background: #23282d;
 		border-radius: 0 0 5px 5px;
 		max-width: 320px;

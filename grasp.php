@@ -34,17 +34,18 @@ add_action(
 				function() {
 					$plugin_data = get_file_data( __FILE__, array( 'version' => 'Version' ) );
 					wp_enqueue_script( 'grasp', plugin_dir_url( __FILE__ ) . 'dist/main.js', array( 'wp-api' ), $plugin_data['version'], true );
-				}
-			);
-
-			add_action(
-				'rest_api_init',
-				function ( $server ) {
-					require_once realpath( __DIR__ . '/app/RestControllers/class-image-checker.php' );
-					$image_checker_endpoint = new \Grasp\RestControllers\Image_Checker();
-					$image_checker_endpoint->register_routes();
+					wp_enqueue_style( 'dashicons' );
 				}
 			);
 		}
+
+		add_action(
+			'rest_api_init',
+			function ( $server ) {
+				require_once realpath( __DIR__ . '/app/RestControllers/class-image-checker.php' );
+				$image_checker_endpoint = new \Grasp\RestControllers\Image_Checker();
+				$image_checker_endpoint->register_routes();
+			}
+		);
 	}
 );
