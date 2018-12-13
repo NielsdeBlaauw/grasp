@@ -1,7 +1,7 @@
 <template>
 	<li id='grasp'>
 		<div class='grasp-container'>
-			<a href='#' class='ab-item grasp-container__trigger' v-on:click="toggleMenu">
+			<a href='#' class='ab-item grasp-container__trigger' @click="toggleMenu($event)">
 				Grasp
 			</a>
 			<div v-if="active" class='grasp-container__content'>
@@ -23,7 +23,8 @@ export default {
 		}
 	},
 	methods: {
-		toggleMenu: function(){
+		toggleMenu: function(event){
+			event.preventDefault();
 			this.active = ! this.active;
 		}
 	}
@@ -35,5 +36,9 @@ export default {
 		background: #23282d;
 		border-radius: 0 0 5px 5px;
 		max-width: 320px;
+	}
+
+	#grasp .grasp-container__trigger:hover, #grasp .grasp-container__trigger:focus{
+		background: #32373c;
 	}
 </style>

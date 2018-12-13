@@ -19,14 +19,14 @@
 					<p>&nbsp;</p>
 					<p><b>Fix it now</b></p>
 					<input type='text' v-model='activeImage.attributes.alt_text'/>
-					<a @click='submitActiveImage(activeImage)'>Save</a>
+					<button @click='submitActiveImage(activeImage)'>Save</button>
 				</div>
 			</div>
-			<a @click='activateItem(false)'>Back to overview</a>
+			<button @click='activateItem(false, $event)'>Back to overview</button>
 		</div>
 		<ul v-else class='grasp-list'>
 			<li class='grasp-list__wrapper' v-for="item in items" :key='item.id'>
-				<a class='grasp-list__item' :class='item.get_class()' @click='activateItem(item)'>
+				<a href='#' class='grasp-list__item' :class='item.get_class()' @click='activateItem(item, $event)'>
 					<img class='grasp-item__image' role='presentation' style='' :src='item.attributes.thumbnail[0]' />
 					<div class='grasp-item__outline'>
 						<div class='grasp-item__description'>
@@ -54,7 +54,8 @@ export default {
 		items: Array
 	},
 	methods: {
-		activateItem: function( item ){
+		activateItem: function( item, event ){
+			event.preventDefault();
 			this.activeItem = item;
 			if(item){
 				this.activeImage = new wp.api.models.Media({id: item.id});
@@ -108,7 +109,7 @@ export default {
 }
 
 #grasp .grasp-list{
-	padding: 8px 16px;
+	padding: 8px 0;
 }
 
 #grasp .grasp-list__item--okay .grasp-item__image{
@@ -118,7 +119,7 @@ export default {
 #grasp .grasp-item__outline{
 	display: flex;
 	flex-grow: 1;
-	border-bottom: 1px solid #444;
+	border-bottom: 1px solid #32373c;
 	padding-bottom: 16px;
 }
 #grasp:hover ul li a, #grasp:hover ul li .ab-icon:before{
@@ -164,11 +165,15 @@ export default {
 	display: flex;
 	height: auto;
 	color: #ccc;
-	padding: 16px 0 0 0;
+	padding: 16px 16px 0;
 }
 
 #wpadminbar  #grasp .grasp-list__item--okay{
 	padding-top: 8px;
+}
+
+#grasp .grasp-list__item:hover,#grasp .grasp-list__item:focus{
+	background: #32373c;
 }
 
 #grasp .grasp-list__item--okay .grasp-item__description {
