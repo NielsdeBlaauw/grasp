@@ -18,8 +18,9 @@
 					<p>- Visitors with screen-readers and other accessibility tools use this text to know what the rich media on your page is about.</p>
 					<p>&nbsp;</p>
 					<p><b>Fix it now</b></p>
-					<input type='text' v-model='activeImage.attributes.alt_text'/>
-					<button @click='submitActiveImage(activeImage)'>Save</button>
+					<label for='alt-text-edit'>Describe the image</label>
+					<input type='text' id='alt-text-edit' class='grasp-edit__input' v-model='activeImage.attributes.alt_text'/>
+					<button class='grasp-edit__button' @click='submitActiveImage(activeImage)'>Save</button>
 				</div>
 				<div v-else-if='!activeItem.has_alt_on_page()'>
 					<p>You have an alt text for this image in WordPress, but your website is not using it on this page.</p>
@@ -95,6 +96,29 @@ export default {
 }
 </script>
 <style>
+#grasp .grasp-edit__button{
+	padding: 8px;
+	background: #00b9eb;
+	color: white;
+	font-weight: bold;
+}
+
+#grasp .grasp-edit__input{
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid #00b9eb;
+	display: block;
+	margin: 8px 0;
+	padding: 8px;
+	width: 100%;
+	box-sizing: border-box;
+	color: #00b9eb;
+}
+
+#grasp .grasp-edit__input:focus{
+	background: rgba(0,185,235,0.24);
+}
+
 #grasp .grasp-detail__back{
 	margin: 0 8px 16px;
 	padding: 8px;
