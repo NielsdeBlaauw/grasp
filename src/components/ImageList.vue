@@ -4,7 +4,7 @@
 			<div class='grasp-detail__header'>
 				<div class='grasp-icon'><span class="ab-icon"></span></div>
 				<p v-if='!activeItem.wp_has_alt()'><b>No alt text in WordPress</b><br />Alt texts are good for accessibility and SEO.</p>
-				<p v-else-if='!activeItem.has_alt_on_page()'><b>Alt not showing correctly</b><br />You have an alt text. But it is not used on the current page.</p>
+				<p v-else-if='!activeItem.has_alt_on_page()'><b>Alt not used on page</b><br />You have an alt text. But it is not used on the current page.</p>
 				<p v-else-if='!activeItem.wp_alt_same_as_on_page()'><b>Different alt showing</b><br />The plugin or theme is showing a different alt then you entered.</p>
 				<p v-else>Fully optimised</p>
 			</div>
@@ -21,6 +21,29 @@
 					<input type='text' v-model='activeImage.attributes.alt_text'/>
 					<button @click='submitActiveImage(activeImage)'>Save</button>
 				</div>
+				<div v-else-if='!activeItem.has_alt_on_page()'>
+					<p>You have an alt text for this image in WordPress, but your website is not using it on this page.</p>
+					<p>&nbsp;</p>
+					<p><b>Fix it now</b></p>
+					<p>- If the image is in your post content, you can probably fix it by editing the current page. You should remove the image from the content and add it again. This should update the alt text used for the image.</p>
+					<p>- The image might be controlled by the active theme or an activated plugin. If this is the case you should contact the theme or plugin author to include the correct alt text in their code.</p>
+					<p>- If this image is not important as content, the theme or plugin author should use 'role="prop"' in the code.</p>
+				</div>
+				<div v-else-if='!activeItem.wp_alt_same_as_on_page()'>
+					<p>You have an alt text for this image in WordPress, but your website is showing a different one.</p>
+					<p>&nbsp;</p>
+					<p>Either your image has an outdated alt text saved in the content, or the active plugin or a theme is generating their own alt text.</p>
+					<p>Your most up-to-date alt text is probably best to use, and almost always better then a computer generated one.</p>
+					<p>&nbsp;</p>
+					<p><b>Fix it now</b></p>
+					<p>- If the image is in your post content, you can probably fix it by editing the current page. You should remove the image from the content and add it again. This should update the alt text used for the image.</p>
+					<p>- The image might be controlled by the active theme or an activated plugin. If this is the case you should contact the theme or plugin author to include the correct alt text in their code. In this case it would be showing the user provided alt text if provided, and only use a generated alt text as a fallback.</p>
+				</div>
+				<div v-else>
+					<p>This image is correctly optimised.</p>
+					<p>&nbsp;</p>
+					<p>It is helping your website ranking higher in search engine and is providing a good experience for visitors using screenreaders. Awesome!</p>
+				</div>
 			</div>
 			<button @click='activateItem(false, $event)'>Back to overview</button>
 		</div>
@@ -31,7 +54,7 @@
 					<div class='grasp-item__outline'>
 						<div class='grasp-item__description'>
 							<p v-if='!item.wp_has_alt()'><b>No alt text in WordPress</b><br />Alt texts are good for accessibility and SEO.</p>
-							<p v-else-if='!item.has_alt_on_page()'><b>Alt not showing correctly</b><br />You have an alt text. But it is not used on the current page.</p>
+							<p v-else-if='!item.has_alt_on_page()'><b>Alt not used on page</b><br />You have an alt text. But it is not used on the current page.</p>
 							<p v-else-if='!item.wp_alt_same_as_on_page()'><b>Different alt showing</b><br />The plugin or theme is showing a different alt then you entered.</p>
 							<p v-else>Fully optimised</p>
 						</div>

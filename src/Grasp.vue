@@ -36,6 +36,8 @@ export default {
 		background: #23282d;
 		border-radius: 0 0 5px 5px;
 		max-width: 320px;
+		max-height: calc( 100vh - 80px);
+		overflow-y: scroll;
 	}
 
 	#grasp .grasp-container__trigger:hover, #grasp .grasp-container__trigger:focus{
