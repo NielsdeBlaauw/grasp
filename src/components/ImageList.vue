@@ -45,7 +45,7 @@
 					<p>It is helping your website ranking higher in search engine and is providing a good experience for visitors using screenreaders. Awesome!</p>
 				</div>
 			</div>
-			<button @click='activateItem(false, $event)'>Back to overview</button>
+			<button class='grasp-detail__back' @click='activateItem(false, $event)'>Back to overview</button>
 		</div>
 		<ul v-else class='grasp-list'>
 			<li class='grasp-list__wrapper' v-for="item in items" :key='item.id'>
@@ -95,6 +95,21 @@ export default {
 }
 </script>
 <style>
+#grasp .grasp-detail__back{
+	margin: 0 8px 16px;
+	padding: 8px;
+	background: transparent;
+	color: #00b9eb;
+	font-weight: bold;
+}
+
+#grasp .grasp-detail__back:hover{
+	background: rgba(0,185,235,0.08);
+}
+#grasp .grasp-detail__back:focus{
+	background: rgba(0,185,235,0.24);
+}
+
 #grasp .grasp-detail__image{
 	width: 100%;
 	max-height: 180px;
@@ -145,7 +160,7 @@ export default {
 	border-bottom: 1px solid #32373c;
 	padding-bottom: 16px;
 }
-#grasp:hover ul li a, #grasp:hover ul li .ab-icon:before{
+#grasp:hover ul li a, #grasp:hover ul li .ab-icon:before, #grasp:hover .grasp-detail .ab-icon:before{
 	color: inherit;
 }
 #grasp .grasp-list__item--okay .grasp-icon {
